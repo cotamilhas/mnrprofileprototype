@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <title>Profile Proto</title>
+</head>
+
+<body>
+
+    <div id="minha-div" class="profilebase">
+        <div class="imglevels">
+            <img id="sliderImage" src="img/icons/30.PNG" alt="">
+        </div>
+
+        <div class="username">
+            <p id="texto-digitado">Username</p>
+        </div>
+        <div class="xp">
+            <p id="numXp-digitado">313</p>
+        </div>
+        <div class="wins">
+            <p id="numWins-digitado">313</p>
+        </div>
+        <div class="avatar">
+            <img src="img/tag.png">
+        </div>
+    </div>
+    <br>
+    <div class="middle">
+        <button><img src="img/tag.png"></button>
+        <button><img src="img/chief.png"></button>
+        <button><img src="img/espresso.png"></button>
+        <button><img src="img/jaz.png"></button>
+        <button><img src="img/hale.png"></button>
+    </div>
+    <br>
+
+    <div class="slider-container">
+        <input type="range" min="1" max="45" value="30" class="slider" id="mySlider">
+        <p>Level: <span id="sliderValue"></span></p>
+    </div>
+
+    <script src="script.js"></script>
+    <div class="middle">
+        <label for="texto">Username: </label>
+        <input type="text" id="texto" name="texto">
+        <button onclick="mostrarTexto()">Apply</button>
+
+        <label for="numXp">XP: </label>
+        <input type="text" id="numXp" name="numXp">
+        <button onclick="mostrarXp()">Apply</button>
+
+
+        <label for="numWins">Wins: </label>
+        <input type="text" id="numWins" name="numWins">
+        <button onclick="mostrarWins()">Apply</button>
+        <br><br>
+        <button id="btnScreenshot" type="button">Download</button>
+
+
+
+        <script src="script.js"></script>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="exemple">
+        <p>Signatures back then ↴</p>
+        <img src="img/HAM11KK.png" alt="">
+    </div>
+    <br><br>
+    <div class="middle">
+        <h2>This is a Prototype so, there's some thing that I want to include</h2>
+        <p>Such as:</p>
+        <p>Road Trip Logo</p>
+        <p>Profile Color</p>
+    </div>
+
+</body>
+
+</html>
