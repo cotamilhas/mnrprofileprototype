@@ -10,7 +10,7 @@ slider.oninput = function() {
 }
 
 function updateImage(value) {
-  var imageName = value + ".png";
+  var imageName = value + ".PNG";
   var fullPath = imagePath + imageName;
   image.src = fullPath;
 }
