@@ -9,13 +9,13 @@
 
 <body>
 
-    <div id="minha-div" class="profilebase">
+    <div id="screenshotdiv" class="profilebase">
         <div class="imglevels">
             <img id="sliderImage" src="img/icons/30.PNG" alt="">
         </div>
 
         <div class="username">
-            <p id="texto-digitado">Username</p>
+            <p id="text-digitado">Username</p>
         </div>
         <div class="xp">
             <p id="numXp-digitado">313</p>
@@ -24,17 +24,25 @@
             <p id="numWins-digitado">313</p>
         </div>
         <div class="avatar">
-            <img src="img/tag.png">
+            <img id="avatars" src="img/avatars/tag.png">
         </div>
     </div>
     <br>
     <div class="middle">
-        <button><img src="img/tag.png"></button>
-        <button><img src="img/chief.png"></button>
-        <button><img src="img/espresso.png"></button>
-        <button><img src="img/jaz.png"></button>
-        <button><img src="img/hale.png"></button>
+        <button id="tag" onclick="switchTag()"></button>
+        <button id="chief" onclick="switchChief()"></button>
+        <button id="espresso" onclick="switchEspresso()"></button>
+        <button id="jaz" onclick="switchJaz()"></button>
+        <button id="hale" onclick="switchHale()"></button>
+
+
+        <script src="script.js"></script>
     </div>
+    <div class="middle">
+        <p>Upload your own avatar</p>
+        <input type="file" id="avatars" title="Upload" onchange="showAvatar(this)"></input>
+    </div>
+
     <br>
 
     <div class="slider-container">
@@ -44,18 +52,18 @@
 
     <script src="script.js"></script>
     <div class="middle">
-        <label for="texto">Username: </label>
-        <input type="text" id="texto" name="texto">
-        <button onclick="mostrarTexto()">Apply</button>
+        <label for="text">Username: </label>
+        <input autocomplete="off" type="text" id="Username" name="text">
+        <button onclick="showText()">Apply</button>
 
         <label for="numXp">XP: </label>
-        <input type="text" id="numXp" name="numXp">
-        <button onclick="mostrarXp()">Apply</button>
+        <input autocomplete="off" type="text" id="numXp" name="numXp">
+        <button onclick="showXp()">Apply</button>
 
 
         <label for="numWins">Wins: </label>
-        <input type="text" id="numWins" name="numWins">
-        <button onclick="mostrarWins()">Apply</button>
+        <input autocomplete="off" type="text" id="numWins" name="numWins">
+        <button onclick="showWins()">Apply</button>
         <br><br>
         <button id="btnScreenshot" type="button">Download</button>
 

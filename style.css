@@ -115,3 +115,45 @@ body {
     background-color: #4CAF50;
     cursor: pointer;
 }
+
+.middle #tag{
+    background-image: url(img/avatars/tag.png);
+    background-position: center;
+    width: 160px;
+    height: 160px;
+}
+
+.middle #chief{
+    background-image: url(img/avatars/chief.png);
+    background-position: center;
+    width: 160px;
+    height: 160px;
+}
+
+.middle #espresso{
+    background-image: url(img/avatars/espresso.png);
+    background-position: center;
+    width: 160px;
+    height: 160px;
+}
+
+.middle #jaz{
+    background-image: url(img/avatars/jaz.png);
+    background-position: center;
+    width: 160px;
+    height: 160px;
+}
+
+.middle #hale{
+    background-image: url(img/avatars/hale.png);
+    background-position: center;
+    width: 160px;
+    height: 160px;
+}
+
+.middle #who{
+    background-image: url(img/avatars/who.png);
+    background-position: center;
+    width: 160px;
+    height: 160px;
+}
