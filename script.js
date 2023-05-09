@@ -61,7 +61,7 @@ function showWins() {
 }
 
 document.getElementById("btnScreenshot").addEventListener("click", function () {
-  html2canvas(document.querySelector("#screnshotdiv")).then(function (canvas) {
+  html2canvas(document.querySelector("#screenshotdiv")).then(function (canvas) {
     var img = canvas.toDataURL("image/png");
     var link = document.createElement('a');
     link.download = 'signature.png';
