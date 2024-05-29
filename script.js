@@ -2,7 +2,6 @@ var slider = document.getElementById("mySlider");
 var output = document.getElementById("sliderValue");
 var image = document.getElementById("sliderImage");
 var imagePath = "img/icons/";
-var imagePathTwo = "img/avatars/";
 output.innerHTML = slider.value;
 
 slider.oninput = function () {
@@ -94,7 +93,7 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
     html2canvas(document.querySelector("#screenshotdiv"), {backgroundColor:null}).then(function (canvas) {       
         var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
         console.log(img);
-        window.location.href = img;
+        window.location.href = img + ".png";
     });
 });
 
