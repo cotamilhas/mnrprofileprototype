@@ -20,8 +20,8 @@ body {
     height: 150px;
     margin: 0 auto;
     background-image: url(img/profile.png);
-    background-color: #BE4CE4;
-    /* border-radius: 17px; */
+    background-color: #ffffff;
+    border-radius: 17px;
 }
 
 .imglevels {
