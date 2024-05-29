@@ -97,10 +97,10 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         var height = canvas.height;
 
         // Define the radius for each corner
-        var topLeftRadius = 17;
-        var topRightRadius = 17;
-        var bottomLeftRadius = 17;
-        var bottomRightRadius = 17;
+        var topLeftRadius = 16;
+        var topRightRadius = 16;
+        var bottomLeftRadius = 18;
+        var bottomRightRadius = 18;
 
         function clearOutsideRoundedCorners() {
             var imageData = context.getImageData(0, 0, width, height);
