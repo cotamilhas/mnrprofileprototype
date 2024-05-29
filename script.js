@@ -92,8 +92,10 @@ function showAvatar(input) {
 document.getElementById("btnScreenshot").addEventListener("click", function () {
     html2canvas(document.querySelector("#screenshotdiv"), {backgroundColor:null}).then(function (canvas) {       
         var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        console.log(img);
-        window.location.href = img + ".png";
+        var link = document.createElement('a');
+        link.href = img;
+        link.download = 'signature.png';
+        link.click();
     });
 });
 
