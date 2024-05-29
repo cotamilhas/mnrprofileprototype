@@ -95,26 +95,35 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         var context = canvas.getContext("2d");
         var width = canvas.width;
         var height = canvas.height;
-        var blockSize = 15;
+        var radius = 17;
 
-        function clearBlock(x, y) {
-            var imageData = context.getImageData(x, y, blockSize, blockSize);
+        function clearOutsideRoundedCorners() {
+            var imageData = context.getImageData(0, 0, width, height);
             var data = imageData.data;
 
-            for (var i = 0; i < data.length; i += 4) {
-                if (data[i] === 190 && data[i + 1] === 76 && data[i + 2] === 228) { // Hex #BE4CE4
-                    data[i + 3] = 0; // Set alpha to 0 (transparent)
+            function isOutsideRoundedCorner(x, y) {
+                if ((x < radius && y < radius && Math.hypot(x - radius, y - radius) > radius) || 
+                    (x > width - radius && y < radius && Math.hypot(x - (width - radius), y - radius) > radius) || 
+                    (x < radius && y > height - radius && Math.hypot(x - radius, y - (height - radius)) > radius) || 
+                    (x > width - radius && y > height - radius && Math.hypot(x - (width - radius), y - (height - radius)) > radius)) {
+                    return true;
+                }
+                return false;
+            }
+
+            for (var y = 0; y < height; y++) {
+                for (var x = 0; x < width; x++) {
+                    var index = (y * width + x) * 4;
+                    if (isOutsideRoundedCorner(x, y)) {
+                        data[index + 3] = 0;
+                    }
                 }
             }
 
-            context.putImageData(imageData, x, y);
+            context.putImageData(imageData, 0, 0);
         }
 
-        // Clear blocks in the corners
-        clearBlock(0, 0); // Top-left corner
-        clearBlock(width - blockSize, 0); // Top-right corner
-        clearBlock(0, height - blockSize); // Bottom-left corner
-        clearBlock(width - blockSize, height - blockSize); // Bottom-right corner
+        clearOutsideRoundedCorners();
 
         var img = canvas.toDataURL("image/png");
         var link = document.createElement('a');
@@ -125,4 +134,3 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         document.body.removeChild(link);
     });
 });
-
