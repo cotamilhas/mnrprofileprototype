@@ -95,50 +95,37 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         var context = canvas.getContext("2d");
         var width = canvas.width;
         var height = canvas.height;
+        var radius = 17;
 
-        // Define the radius for each corner
-        var topLeftRadius = 16;
-        var topRightRadius = 16;
-        var bottomLeftRadius = 18;
-        var bottomRightRadius = 18;
-
-        function clearOutsideRoundedCorners() {
-            var imageData = context.getImageData(0, 0, width, height);
-            var data = imageData.data;
-
-            function isOutsideRoundedCorner(x, y) {
-                // Top-left corner
-                if (x < topLeftRadius && y < topLeftRadius && Math.hypot(x - topLeftRadius, y - topLeftRadius) > topLeftRadius) {
-                    return true;
-                }
-                // Top-right corner
-                if (x > width - topRightRadius && y < topRightRadius && Math.hypot(x - (width - topRightRadius), y - topRightRadius) > topRightRadius) {
-                    return true;
-                }
-                // Bottom-left corner
-                if (x < bottomLeftRadius && y > height - bottomLeftRadius && Math.hypot(x - bottomLeftRadius, y - (height - bottomLeftRadius)) > bottomLeftRadius) {
-                    return true;
-                }
-                // Bottom-right corner
-                if (x > width - bottomRightRadius && y > height - bottomRightRadius && Math.hypot(x - (width - bottomRightRadius), y - (height - bottomRightRadius)) > bottomRightRadius) {
-                    return true;
-                }
-                return false;
-            }
-
-            for (var y = 0; y < height; y++) {
-                for (var x = 0; x < width; x++) {
-                    var index = (y * width + x) * 4;
-                    if (isOutsideRoundedCorner(x, y)) {
-                        data[index + 3] = 0; // Set alpha to 0 (transparent)
-                    }
-                }
-            }
-
-            context.putImageData(imageData, 0, 0);
+        function createRoundedClipPath(ctx, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(radius, 0);
+            ctx.lineTo(width - radius, 0);
+            ctx.quadraticCurveTo(width, 0, width, radius);
+            ctx.lineTo(width, height - radius);
+            ctx.quadraticCurveTo(width, height, width - radius, height);
+            ctx.lineTo(radius, height);
+            ctx.quadraticCurveTo(0, height, 0, height - radius);
+            ctx.lineTo(0, radius);
+            ctx.quadraticCurveTo(0, 0, radius, 0);
+            ctx.closePath();
+            ctx.clip();
         }
 
-        clearOutsideRoundedCorners();
+        // Save the context in its unaltered state
+        context.save();
+
+        // Clear the canvas by filling it with a transparent background
+        context.clearRect(0, 0, width, height);
+
+        // Create a clipping region with rounded corners
+        createRoundedClipPath(context, width, height, radius);
+
+        // Draw the original canvas content into the clipping region
+        context.drawImage(canvas, 0, 0);
+
+        // Restore the context to its unaltered state
+        context.restore();
 
         var img = canvas.toDataURL("image/png");
         var link = document.createElement('a');
