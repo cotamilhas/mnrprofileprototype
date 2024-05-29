@@ -20,8 +20,8 @@ body {
     height: 150px;
     margin: 0 auto;
     background-image: url(img/profile.png);
-    background-color: blueviolet;
-    border-radius: 17px;
+    background-color: #00000000;
+    /* border-radius: 17px; */
 }
 
 .imglevels {
@@ -40,6 +40,7 @@ body {
     position: relative;
     bottom: 54%;
     left: 28%;
+    letter-spacing: 1px;
 }
 
 .xp {
