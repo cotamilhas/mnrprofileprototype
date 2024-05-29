@@ -21,7 +21,7 @@ body {
     margin: 0 auto;
     background-image: url(img/profile.png);
     background-color: blueviolet;
-
+    border-radius: 17px;
 }
 
 .imglevels {
