@@ -95,17 +95,32 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         var context = canvas.getContext("2d");
         var width = canvas.width;
         var height = canvas.height;
-        var radius = 16;
+
+        // Define the radius for each corner
+        var topLeftRadius = 17;
+        var topRightRadius = 17;
+        var bottomLeftRadius = 17;
+        var bottomRightRadius = 17;
 
         function clearOutsideRoundedCorners() {
             var imageData = context.getImageData(0, 0, width, height);
             var data = imageData.data;
 
             function isOutsideRoundedCorner(x, y) {
-                if ((x < radius && y < radius && Math.hypot(x - radius, y - radius) > radius) || 
-                    (x > width - radius && y < radius && Math.hypot(x - (width - radius), y - radius) > radius) || 
-                    (x < radius && y > height - radius && Math.hypot(x - radius, y - (height - radius)) > radius) || 
-                    (x > width - radius && y > height - radius && Math.hypot(x - (width - radius), y - (height - radius)) > radius)) {
+                // Top-left corner
+                if (x < topLeftRadius && y < topLeftRadius && Math.hypot(x - topLeftRadius, y - topLeftRadius) > topLeftRadius) {
+                    return true;
+                }
+                // Top-right corner
+                if (x > width - topRightRadius && y < topRightRadius && Math.hypot(x - (width - topRightRadius), y - topRightRadius) > topRightRadius) {
+                    return true;
+                }
+                // Bottom-left corner
+                if (x < bottomLeftRadius && y > height - bottomLeftRadius && Math.hypot(x - bottomLeftRadius, y - (height - bottomLeftRadius)) > bottomLeftRadius) {
+                    return true;
+                }
+                // Bottom-right corner
+                if (x > width - bottomRightRadius && y > height - bottomRightRadius && Math.hypot(x - (width - bottomRightRadius), y - (height - bottomRightRadius)) > bottomRightRadius) {
                     return true;
                 }
                 return false;
@@ -115,7 +130,7 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
                 for (var x = 0; x < width; x++) {
                     var index = (y * width + x) * 4;
                     if (isOutsideRoundedCorner(x, y)) {
-                        data[index + 3] = 0;
+                        data[index + 3] = 0; // Set alpha to 0 (transparent)
                     }
                 }
             }
@@ -134,3 +149,4 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         document.body.removeChild(link);
     });
 });
+
