@@ -60,18 +60,6 @@ function showWins() {
 
 }
 
-document.getElementById("btnScreenshot").addEventListener("click", function () {
-  html2canvas(document.querySelector("#screenshotdiv")).then(function (canvas) {
-    var img = canvas.toDataURL("image/png");
-    var link = document.createElement('a');
-    link.download = 'signature.png';
-    link.href = img;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
-});
-
 function switchTag() {
   document.getElementById("avatars").src="img/avatars/tag.png";
 }
@@ -101,3 +89,15 @@ function showAvatar(input) {
     who.readAsDataURL(input.files[0]);
   }
 }
+
+document.getElementById("btnScreenshot").addEventListener("click", function () {
+  html2canvas(document.querySelector("#screenshotdiv")).then(function (canvas) {
+    var img = canvas.toDataURL("image/png");
+    var link = document.createElement('a');
+    link.download = 'signature.png';
+    link.href = img;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+});
