@@ -91,13 +91,38 @@ function showAvatar(input) {
 }
 
 document.getElementById("btnScreenshot").addEventListener("click", function () {
-  html2canvas(document.querySelector("#screenshotdiv")).then(function (canvas) {
-    var img = canvas.toDataURL("image/png");
-    var link = document.createElement('a');
-    link.download = 'signature.png';
-    link.href = img;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  });
+    html2canvas(document.querySelector("#screenshotdiv")).then(function (canvas) {
+        var context = canvas.getContext("2d");
+        var width = canvas.width;
+        var height = canvas.height;
+        var blockSize = 15;
+
+        function clearBlock(x, y) {
+            var imageData = context.getImageData(x, y, blockSize, blockSize);
+            var data = imageData.data;
+
+            for (var i = 0; i < data.length; i += 4) {
+                if (data[i] === 190 && data[i + 1] === 76 && data[i + 2] === 228) { // Hex #BE4CE4
+                    data[i + 3] = 0; // Set alpha to 0 (transparent)
+                }
+            }
+
+            context.putImageData(imageData, x, y);
+        }
+
+        // Clear blocks in the corners
+        clearBlock(0, 0); // Top-left corner
+        clearBlock(width - blockSize, 0); // Top-right corner
+        clearBlock(0, height - blockSize); // Bottom-left corner
+        clearBlock(width - blockSize, height - blockSize); // Bottom-right corner
+
+        var img = canvas.toDataURL("image/png");
+        var link = document.createElement('a');
+        link.download = 'signature.png';
+        link.href = img;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
 });
+
