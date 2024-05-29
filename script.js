@@ -95,7 +95,7 @@ document.getElementById("btnScreenshot").addEventListener("click", function () {
         var context = canvas.getContext("2d");
         var width = canvas.width;
         var height = canvas.height;
-        var radius = 30;
+        var radius = 16;
 
         function clearOutsideRoundedCorners() {
             var imageData = context.getImageData(0, 0, width, height);
